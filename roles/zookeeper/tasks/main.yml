@@ -2,6 +2,10 @@
   shell: rpm -Uvh http://archive.cloudera.com/cdh4/one-click-install/redhat/6/x86_64/cloudera-cdh-4-0.x86_64.rpm
   sudo: yes
 
+- name: checking for zookeeper directory
+  file: path=/var/lib/zookeeper state=directory
+  sudo: yes
+
 - name: installing Zookeeper
   yum: name={{ item }} state=present
   with_items:
