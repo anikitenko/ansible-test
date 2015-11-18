@@ -13,6 +13,7 @@
   remote_user: testusr
   vars:
     mesos_master: node1
+    zookeeper_id: 1
 
 - hosts: mesosslave
   roles:
