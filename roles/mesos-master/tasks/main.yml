@@ -1,0 +1,11 @@
+- name: check for working directory
+  file: path=/var/lib/mesos state=directory
+  sudo: yes
+
+- name: check for 'daemonize'
+  yum: name=https://forensics.cert.org/centos/cert/7/x86_64/daemonize-1.7.3-7.el7.x86_64.rpm state=present
+  sudo: yes
+
+- name: start Mesos master
+  shell: daemonize /usr/local/sbin/mesos-master --work_dir=/var/lib/mesos
+  sudo: yes

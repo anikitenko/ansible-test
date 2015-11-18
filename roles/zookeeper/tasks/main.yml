@@ -1,0 +1,10 @@
+- name: installing Zookeeper
+  yum: name={{ item }} state=present
+  with_items:
+    - zookeeper-server
+    - zookeeper
+  sudo: yes
+
+- name: starting Zookeeper
+  service: name=zookeeper-server state=started
+  sudo: yes

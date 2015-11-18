@@ -1,0 +1,22 @@
+- hosts: all
+  roles:
+     - mesos
+  remote_user: testusr
+  vars:
+    make_cores: 2
+
+- hosts: mesosmaster
+  roles:
+    - mesos-master
+    - zookeeper
+    - marathon
+  remote_user: testusr
+  vars:
+    mesos_master: node1
+
+- hosts: mesosslave
+  roles:
+    - mesos-slave
+  remote_user: testusr
+  vars:
+    mesos_master: node1
