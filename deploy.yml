@@ -15,7 +15,7 @@
     mesos_master: node1
     zookeeper_id: 1
 
-- hosts: mesosslave
+- hosts: all
   roles:
     - mesos-slave
   remote_user: testusr
