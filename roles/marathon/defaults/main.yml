@@ -1,1 +1,8 @@
+marathon_repo_sources_git: "https://github.com/mesosphere/marathon.git"
+marathon_sources_local: "/opt/marathon"
+
+daemonize_rpm: "https://forensics.cert.org/centos/cert/7/x86_64/daemonize-1.7.3-7.el7.x86_64.rpm"
+
+shell_repo_sbt: "curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo"
+
 mesos_master: node1

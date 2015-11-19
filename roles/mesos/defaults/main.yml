@@ -1,1 +1,10 @@
 make_cores: 2
+
+maven_repo_url: "http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo"
+maven_repo_name: "epel-apache-maven.repo"
+
+mesos_sources_zip_url: "https://github.com/apache/mesos/archive/master.zip"
+mesos_archive: "/tmp/master.zip"
+mesos_tmp_dir: "/tmp/mesos-master"
+
+tmp_dir: "/tmp"

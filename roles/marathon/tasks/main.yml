@@ -1,23 +1,17 @@
 - name: Clone Marathon from repository
-  git: repo=https://github.com/mesosphere/marathon.git dest=/opt/marathon
-  sudo: yes
+  git: repo={{ marathon_repo_sources_git }} dest={{ marathon_sources_local }}
 
 - name: check for 'daemonize'
-  yum: name=https://forensics.cert.org/centos/cert/7/x86_64/daemonize-1.7.3-7.el7.x86_64.rpm state=present
-  sudo: yes
+  yum: name={{ daemonize_rpm }} state=present
 
 - name: adding repo in order to install 'sbt'
-  shell: curl https://bintray.com/sbt/rpm/rpm | sudo tee /etc/yum.repos.d/bintray-sbt-rpm.repo
-  sudo: yes
+  shell: "{{ shell_repo_sbt }}"
 
 - name: installing 'sbt'
   yum: name=sbt state=present
-  sudo: yes
 
 - name: compiling Marathon
-  command: chdir=/opt/marathon sbt package
-  sudo: yes
+  command: chdir={{ marathon_sources_local }} sbt package
 
 - name: start Marathon
-  shell: daemonize /opt/marathon/bin/start --master zk://{{ mesos_master }}:2181/mesos --zk zk://{{ mesos_master }}:2181/marathon
-  sudo: yes
+  shell: daemonize {{ marathon_sources_local }}/bin/start --master zk://{{ mesos_master }}:2181/mesos --zk zk://{{ mesos_master }}:2181/marathon

@@ -1,23 +1,19 @@
 - name: checking for proper repos
-  shell: rpm -Uvh http://archive.cloudera.com/cdh4/one-click-install/redhat/6/x86_64/cloudera-cdh-4-0.x86_64.rpm
-  sudo: yes
+  shell: rpm -Uvh {{ cloudera_repo_rpm }}
 
 - name: installing Zookeeper
   yum: name={{ item }} state=present
   with_items:
     - zookeeper-server
     - zookeeper
-  sudo: yes
 
 - name: check for working directory
-  file: path=/var/lib/zookeeper state=directory owner=zookeeper group=zookeeper
-  sudo: yes
+  file: path={{ zookeeper_data_dir }} state=directory owner={{ zookeeper_user }} group={{ zookeeper_group }}
 
 - name: initializing Zookeeper
-  shell: zookeeper-server-initialize --myid={{ zookeeper_id }}
+  shell: '"{{ zookeeper_initialize }}" --myid="{{ zookeeper_id }}"'
   sudo: yes
-  sudo_user: zookeeper
+  sudo_user: "{{ zookeeper_user }}"
 
 - name: starting Zookeeper
-  service: name=zookeeper-server state=started
-  sudo: yes
+  service: name={{ zookeeper_service_name }} state=started

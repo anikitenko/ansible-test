@@ -2,22 +2,16 @@
   roles:
      - mesos
   remote_user: testusr
-  vars:
-    make_cores: 2
+  sudo: yes
 
 - hosts: mesosmaster
   roles:
-    - mesos-master
-    - zookeeper
     - marathon
   remote_user: testusr
-  vars:
-    mesos_master: node1
-    zookeeper_id: 1
+  sudo: yes
 
 - hosts: all
   roles:
     - mesos-slave
   remote_user: testusr
-  vars:
-    mesos_master: node1
+  sudo: yes

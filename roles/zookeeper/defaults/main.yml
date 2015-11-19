@@ -1,1 +1,8 @@
+cloudera_repo_rpm: "http://archive.cloudera.com/cdh4/one-click-install/redhat/6/x86_64/cloudera-cdh-4-0.x86_64.rpm"
+
 zookeeper_id: 1
+zookeeper_service_name: "zookeeper-server"
+zookeeper_initialize: "zookeeper-server-initialize"
+zookeeper_data_dir: "/var/lib/zookeeper"
+zookeeper_user: "zookeeper"
+zookeeper_group: "zookeeper"

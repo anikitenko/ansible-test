@@ -1,14 +1,11 @@
 - name: installing required repository
-  get_url: url=http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo dest=/etc/yum.repos.d/epel-apache-maven.repo
-  sudo: yes
+  get_url: url={{ maven_repo_url }} dest=/etc/yum.repos.d/{{ maven_repo_name }}
 
 - name: copy needed repo
   copy: src=wandisco-svn.repo.j2 dest=/etc/yum.repos.d/wandisco-svn.repo
-  sudo: yes
 
 - name: install the 'Development tools' package group
   yum: name="@Development tools" state=present
-  sudo: yes
 
 - name: prepare for compilation of Mesos
   yum: name={{ item }} state=present
@@ -27,32 +24,26 @@
     - apr-devel
     - subversion-devel
     - apr-util-devel
-  sudo: yes
 
 - name: download sources of Mesos
-  get_url: url=https://github.com/apache/mesos/archive/master.zip dest=/tmp/master.zip
-  sudo: yes
+  get_url: url={{ mesos_sources_zip_url }} dest={{ mesos_archive }}
 
 - name: unarchive sources
-  unarchive: src=/tmp/master.zip dest=/tmp/ copy=no
-  sudo: yes
+  unarchive: src={{ mesos_archive }} dest={{ tmp_dir }}/ copy=no
 
 - name: build Mesos, run 'bootstrap'
-  command: 'chdir=/tmp/mesos-master "{{ item }}"'
+  command: 'chdir={{ mesos_tmp_dir }} "{{ item }}"'
   with_items:
     - ./bootstrap
-  sudo: yes
 
 - name: create 'build' dir
-  file: path=/tmp/mesos-master/build state=directory
-  sudo: yes
+  file: path='"{{ mesos_tmp_dir }}"/build' state=directory
 
 - name: complete Mesos build
   shell: "{{ item }}"
   args:
-    chdir: /tmp/mesos-master/build
+    chdir: '"{{ mesos_tmp_dir }}"/build'
   with_items:
     - ../configure
     - make -j {{ make_cores }}
     - make install
-  sudo: yes

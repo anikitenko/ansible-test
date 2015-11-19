@@ -1,11 +1,8 @@
 - name: check for temp directory
-  file: path=/tmp/mesos state=directory
-  sudo: yes
+  file: path={{ mesos_tmp_dir }} state=directory
 
 - name: check for 'daemonize'
-  yum: name=https://forensics.cert.org/centos/cert/7/x86_64/daemonize-1.7.3-7.el7.x86_64.rpm state=present
-  sudo: yes
+  yum: name={{ daemonize_rpm }} state=present
 
 - name: start Mesos slave
-  shell: daemonize /usr/local/sbin/mesos-slave --master={{ mesos_master }}:5050
-  sudo: yes
+  shell: daemonize {{ mesos_compile_dir }}/sbin/mesos-slave --master={{ mesos_master }}:5050
