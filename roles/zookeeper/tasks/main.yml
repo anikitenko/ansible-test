@@ -10,11 +10,13 @@
   sudo: yes
 
 - name: check for working directory
-  file: path=/var/lib/zookeeper state=directory
+  file: path=/var/lib/zookeeper state=directory owner=zookeeper group=zookeeper
   sudo: yes
 
 - name: initializing Zookeeper
-  shell: sudo -u zookeeper zookeeper-server-initialize --myid={{ zookeeper_id }}
+  shell: zookeeper-server-initialize --myid={{ zookeeper_id }}
+  sudo: yes
+  sudo_user: zookeeper
 
 - name: starting Zookeeper
   service: name=zookeeper-server state=started
