@@ -9,6 +9,10 @@
     - zookeeper
   sudo: yes
 
+- name: check for working directory
+  file: path=/var/lib/zookeeper state=directory
+  sudo: yes
+
 - name: initializing Zookeeper
   shell: sudo -u zookeeper zookeeper-server-initialize --myid={{ zookeeper_id }}
 
