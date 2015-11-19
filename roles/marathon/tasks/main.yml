@@ -15,7 +15,7 @@
   sudo: yes
 
 - name: compiling Marathon
-  shell: cd /opt/marathon && sbt assembly
+  command: chdir=/opt/marathon sbt package
   sudo: yes
 
 - name: start Marathon
