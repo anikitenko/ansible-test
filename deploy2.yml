@@ -1,7 +1,0 @@
-- hosts: mesosmaster
-  roles:
-    - zookeeper
-    - marathon
-  remote_user: testusr
-  vars:
-    mesos_master: node1
