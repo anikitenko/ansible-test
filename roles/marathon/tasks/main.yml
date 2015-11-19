@@ -14,8 +14,8 @@
   yum: name=sbt state=present
   sudo: yes
 
-- name: compiling mesosphere
-  shell: sbt assembly
+- name: compiling Marathon
+  shell: cd /opt/marathon && sbt assembly
   sudo: yes
 
 - name: start Marathon
