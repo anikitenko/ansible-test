@@ -9,7 +9,7 @@
     - ./gradlew jar
 
 - name: downloading Kafka
-  get_url: url={{kafka_dist}} dest={{kafka_dist_name}}
+  get_url: url={{kafka_dist}} dest={{kafka_path}}/{{kafka_dist_name}}
 
 - name: copying properties file in order to be able to start Kafka
   copy: src=kafka-mesos.properties.j2 dest={{kafka_path}}/kafka-mesos.properties
