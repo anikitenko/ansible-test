@@ -1,0 +1,6 @@
+mesos_master: node1
+
+kafka_mesos_git_repo: "https://github.com/mesos/kafka"
+kafka_path: "/opt/kafka"
+kafka_dist: "https://archive.apache.org/dist/kafka/0.8.2.2/kafka_2.10-0.8.2.2.tgz"
+kafka_dist_name: "kafka_2.10-0.8.2.2.tgz"
