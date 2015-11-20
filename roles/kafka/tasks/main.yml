@@ -13,3 +13,12 @@
 
 - name: copying properties file in order to be able to start Kafka
   copy: src=kafka-mesos.properties.j2 dest={{kafka_path}}/kafka-mesos.properties
+
+- name: check for 'daemonize'
+  yum: name={{ daemonize_rpm }} state=present
+
+- name: exporting Mesos shared library
+  shell: export MESOS_NATIVE_JAVA_LIBRARY={{ mesos_compile_dir }}/lib/libmesos.so
+
+- name: starting Kafka
+  shell: cd {{kafka_path}} && daemonize bash kafka-mesos.sh scheduler
