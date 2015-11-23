@@ -1,5 +1,6 @@
 mesos_master: node1
 mesos_compile_dir: "/usr/local"
 mesos_tmp_dir: "/tmp/mesos"
+mesos_containers: "mesos,docker"
 
 daemonize_rpm: "https://forensics.cert.org/centos/cert/7/x86_64/daemonize-1.7.3-7.el7.x86_64.rpm"
