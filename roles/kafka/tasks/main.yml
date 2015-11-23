@@ -24,3 +24,9 @@
 
 - name: starting Kafka
   shell: cd {{kafka_path}} && daemonize bash kafka-mesos.sh scheduler
+
+- name: adding brokers
+  shell: cd {{kafka_path}} && bash kafka-mesos.sh broker add {{ brokers }} --cpus {{ brokers_cpu }} --mem {{ brokers_mem }}
+
+- name: starting brokers:
+  shell: cd {{kafka_path}} && bash kafka-mesos.sh broker start {{ brokers }}
