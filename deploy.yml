@@ -8,6 +8,7 @@
   roles:
     - marathon
     - kafka
+    - spark
   remote_user: testusr
   sudo: yes
 
