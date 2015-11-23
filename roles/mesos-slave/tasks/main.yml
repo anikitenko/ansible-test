@@ -7,5 +7,8 @@
 - name: checking for docker
   yum: name=docker state=present
 
+- name: starting docker service
+  service: name=docker state=started
+
 - name: start Mesos slave
   shell: daemonize {{ mesos_compile_dir }}/sbin/mesos-slave --master={{ mesos_master }}:5050 --containerizers={{ mesos_containers }}
