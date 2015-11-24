@@ -1,5 +1,5 @@
 {
-    "cmd": 'echo "127.0.0.1   `hostname`" >> /etc/hosts && export MESOS_NATIVE_JAVA_LIBRARY=/libmesos.so && ./spark/sbin/start-mesos-dispatcher.sh --master mesos://{{ mesos_master_ipv4 }}:5050 ; while [ true ] ; do echo `date` ; sleep 60 ; done',
+    "cmd": "echo \"127.0.0.1   `hostname`\" >> /etc/hosts && export MESOS_NATIVE_JAVA_LIBRARY=/libmesos.so && ./spark/sbin/start-mesos-dispatcher.sh --master mesos://{{ mesos_master_ipv4 }}:5050 ; while [ true ] ; do echo `date` ; sleep 60 ; done",
     "cpus": {{ spark_cpus }},
     "id": "spark",
     "instances": {{ spark_instances }},
