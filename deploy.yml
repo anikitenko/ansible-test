@@ -8,12 +8,17 @@
   roles:
     - marathon
     - kafka
-    - spark
   remote_user: testusr
   sudo: yes
 
 - hosts: all
   roles:
     - mesos-slave
+  remote_user: testusr
+  sudo: yes
+
+- hosts: mesosmaster
+  roles:
+    - spark
   remote_user: testusr
   sudo: yes

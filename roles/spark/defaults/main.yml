@@ -1,0 +1,6 @@
+mesos_master_ipv4: 192.168.15.22
+
+spark_instances: 1
+spark_cpus: 1
+spark_mem: 1024
+spark_image: "alexvwan/spark" 
