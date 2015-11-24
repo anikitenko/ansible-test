@@ -1,3 +1,5 @@
+mesos_master_hostname: "onikiten-3.cisco.com"
+
 mesos_master_ipv4: 192.168.15.22
 
 spark_instances: 1

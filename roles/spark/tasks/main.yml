@@ -4,4 +4,4 @@
     dest=/tmp/spark.json
 
 - name: making request to Marathon API to start Spark in Docker container as framework
-  shell: curl -X POST -H "Content-type: application/json" -H "Accept: application/json" -d@/tmp/spark.json http://localhost:8080/v2/apps
+  shell: "curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -d@/tmp/spark.json http://localhost:8080/v2/apps"
